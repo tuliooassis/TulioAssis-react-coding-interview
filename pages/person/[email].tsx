@@ -17,6 +17,9 @@ const PersonDetail = () => {
     router.query?.email as string,
     true
   );
+  const [editMode, setEditMode] = useState(false)
+
+  const [] = useState()
 
   useEffect(() => {
     load();
@@ -49,7 +52,7 @@ const PersonDetail = () => {
           >
             Visit website
           </Button>,
-          <Button type="default" onClick={() => {}}>
+          <Button type="default" onClick={() => { setEditMode(true) }}>
             Edit
           </Button>,
         ]}
@@ -59,8 +62,19 @@ const PersonDetail = () => {
             <Descriptions.Item label="Name">{data.name}</Descriptions.Item>
             <Descriptions.Item label="Gender">{data.gender}</Descriptions.Item>
             <Descriptions.Item label="Phone">{data.phone}</Descriptions.Item>
-
             <Descriptions.Item label="Birthday">{data.birthday}</Descriptions.Item>
+          </Descriptions>
+        )}
+
+        { editMode && (
+          <Descriptions size="small" column={1}>
+            <Descriptions.Item label="Name"><Input placeholder='Name'/></Descriptions.Item>
+            <Descriptions.Item label="Gender"><Input placeholder='Gender'/></Descriptions.Item>
+            <Descriptions.Item label="Phone"><Input placeholder='Phone'/></Descriptions.Item>
+            <Descriptions.Item label="Birthday"><Input placeholder='Birthday'/></Descriptions.Item>
+
+
+            <Button onClick={() => {save({})}} />
           </Descriptions>
         )}
         <GenericList<Company>

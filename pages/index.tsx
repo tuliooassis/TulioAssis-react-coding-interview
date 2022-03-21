@@ -18,16 +18,16 @@ const Image = styled.img`
 const Splash = () => {
   const router = useRouter();
   const { execute, initialized: initializedPeopleInfo } = usePeople();
-
+  
   useEffect(() => {
     (async () => {
       await execute(DEFAULT_PAGE_SIZE);
     })();
-  });
+  }, []);
 
   useEffect(() => {
     if (initializedPeopleInfo) router.push('/home');
-  }, []);
+  }, [initializedPeopleInfo]);
 
   return (
     <PageHeader
